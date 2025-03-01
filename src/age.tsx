@@ -13,19 +13,13 @@ interface NextBirthday {
   daysRemaining: number;
 }
 
-// interface LifeEvent {
-//   name: string;
-//   date: string;
-// }
+
 
 const AgeCalculator: React.FC = () => {
   const [birthDate, setBirthDate] = useState<string>('');
   const [targetDate, setTargetDate] = useState<string>('');
   const [age, setAge] = useState<AgeResult | null>(null);
   const [nextBirthday, setNextBirthday] = useState<NextBirthday | null>(null);
-//   const [lifeEvents, setLifeEvents] = useState<LifeEvent[]>([]);
-//   const [customEvent, setCustomEvent] = useState<string>('');
-//   const [customEventDate, setCustomEventDate] = useState<string>('');
 
   // Set today as default target date
   useEffect(() => {
@@ -113,61 +107,13 @@ const AgeCalculator: React.FC = () => {
     });
   };
 
-//   const addCustomEvent = (): void => {
-//     if (!customEvent || !customEventDate) {
-//       alert('Please enter both event name and date');
-//       return;
-//     }
 
-//     const eventDate = new Date(customEventDate);
-//     if (isNaN(eventDate.getTime())) {
-//       alert('Please enter a valid event date');
-//       return;
-//     }
-
-//     setLifeEvents([...lifeEvents, { name: customEvent, date: customEventDate }]);
-//     setCustomEvent('');
-//     setCustomEventDate('');
-//   };
-
-//   const calculateEventTimeframe = (eventDate: string): string | null => {
-//     if (!birthDate) return null;
-
-//     const birth = new Date(birthDate);
-//     const event = new Date(eventDate);
-//     const today = new Date();
-
-//     if (event > today) {
-//       // Future event
-//       const daysUntil = Math.ceil((event.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
-//       return `${daysUntil} days from now`;
-//     } else {
-//       // Past event
-//       let years = event.getFullYear() - birth.getFullYear();
-//       let months = event.getMonth() - birth.getMonth();
-//       let days = event.getDate() - birth.getDate();
-
-//       if (days < 0) {
-//         const lastMonthDate = new Date(event.getFullYear(), event.getMonth(), 0);
-//         days += lastMonthDate.getDate();
-//         months--;
-//       }
-
-//       if (months < 0) {
-//         months += 12;
-//         years--;
-//       }
-
-//       return `You were ${years} years, ${months} months, and ${days} days old`;
-//     }
-//   };
 
   const resetCalculator = (): void => {
     setBirthDate('');
     setTargetDate(formatDateForInput(new Date()));
     setAge(null);
     setNextBirthday(null);
-    setLifeEvents([]);
   };
 
   return (
@@ -243,51 +189,6 @@ const AgeCalculator: React.FC = () => {
           </div>
         )}
         
-        {/* <div className="mt-8 border-t pt-6">
-          <h2 className="text-lg font-semibold mb-4 text-blue-600">Life Events</h2>
-          
-          <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
-            <input
-              type="text"
-              placeholder="Event Name"
-              value={customEvent}
-              onChange={(e) => setCustomEvent(e.target.value)}
-              className="flex-1 p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            />
-            <input
-              type="date"
-              value={customEventDate}
-              onChange={(e) => setCustomEventDate(e.target.value)}
-              className="flex-1 p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            />
-            <button
-              onClick={addCustomEvent}
-              className="md:w-auto py-2 px-4 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-200"
-            >
-              Add Event
-            </button>
-          </div>
-          
-          {lifeEvents.length > 0 ? (
-            <ul className="space-y-2">
-              {lifeEvents.map((event, index) => (
-                <li key={index} className="p-3 bg-gray-50 rounded shadow-sm">
-                  <div className="flex justify-between">
-                    <span className="font-medium">{event.name}</span>
-                    <span className="text-gray-500">{new Date(event.date).toDateString()}</span>
-                  </div>
-                  {birthDate && (
-                    <p className="text-sm text-gray-600 mt-1">
-                      {calculateEventTimeframe(event.date)}
-                    </p>
-                  )}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="text-gray-500 italic">No events added yet.</p>
-          )}
-        </div> */}
       </div>
     </div>
   );
