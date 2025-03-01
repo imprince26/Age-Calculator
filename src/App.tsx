@@ -1,10 +1,10 @@
-import AgeCalculator from "./age"
+import AgeCalculator from "./AgeCalculator"
 
 const App = () => {
   return (
-    <div>
+    <>
       <AgeCalculator />
-    </div>
+    </>
   )
 }
 
